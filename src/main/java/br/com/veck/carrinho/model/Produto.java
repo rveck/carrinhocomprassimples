@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
 @Table(name = "produto")
@@ -19,9 +23,12 @@ public class Produto {
 	@Column(name = "nome", nullable = false)
 	private String nome;
 	
-	@Column(name = "valor", nullable = false)
-	
+	@Column(name = "valor", nullable = false, precision=13, scale=2)
 	private Double valor;
+	
+	@Transient
+	@JsonInclude(Include.NON_NULL)
+	private Integer quantidade;
 
 	public Long getId() {
 		return id;
@@ -45,6 +52,14 @@ public class Produto {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 }
