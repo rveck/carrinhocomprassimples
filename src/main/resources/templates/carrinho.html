@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Carrinho de Produtos Simples</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/css/estilo.css"/>
+		
+</head>
+<body lang="pt-br" ng-app="carrinhoApp" class="ng-cloak">
+	<div ng-controller="CarrinhoController as carrinhoController" class="container">
+		<div class="row">
+			<div class="col">
+				<h3>Carrinho de Compras Simples</h3> 	
+			</div>
+		</div>
+		<div class="row adicionar-produto" >
+			<div class="col"> 					
+				<div class="form-group">					
+					<h6>Procure pelo Produto</h6>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="produto" 
+						autocomplete="off"
+						placeholder="Digite o nome do produto..." 
+						ng-focus="carrinhoController.focus=true" 						 
+						ng-keyup="carrinhoController.filtrar()"
+						ng-model="carrinhoController.busca">	
+					<div class="resultados" ng-show="carrinhoController.focus">
+				    	<div 
+				    		class="resultado" 
+				    		ng-repeat="item in carrinhoController.produtosFiltrados" 
+				    		ng-bind="item.nome" 
+				    		ng-click="carrinhoController.focus = false; carrinhoController.setProduto(item)"></div>
+				  	</div>					
+		    		<button ng-click="carrinhoController.adicionarProduto()" class="btn btn-primary mb-2">Adicionar</button>				
+				</div>						    	
+	    	</div>
+    	</div>
+    	<div class="row">
+			<div class="col">
+				<h6>Itens no Carrinho</h6> 	
+			</div>
+		</div>
+    	<div class="row">   
+    		<div class="col"> 	
+		    	<table class="table table-hover">
+			        <thead>
+			            <tr>
+			                <th>ID.</th>
+			                <th>Name</th>
+			                <th>Quantidade</th>
+			                <th>Valor (R$)</th>
+			                <th>Remover</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr ng-repeat="produto in carrinhoController.carrinho">
+			                <td><span ng-bind="produto.id"></span></td>
+			                <td><span ng-bind="produto.nome"></span></td>
+			                <td><input type="number" ng-model="produto.quantidade"></td>
+			                <td><span ng-bind="produto.valor"></span></td>
+			                <td>
+			                	<button type="button" ng-click="carrinhoController.removerProduto(produto)" class="btn btn-default">
+			                		<i class="fa fa-times fa-lg" aria-hidden="true"></i>
+			                	</button>
+			                </td>			                
+			            </tr>
+			            <tr>
+			                <td>Total</td>
+			                <td></td>
+			                <td></td>
+			                <td></td>
+			                <td></td>			                
+			            </tr>
+			        </tbody>
+			    </table>
+		    </div>
+	    </div>
+	    <div class="row">
+			<div class="col">
+				<p>Powered by Rafael Veck, 2018</p> 	
+			</div>
+		</div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/service/carrinho_service.js"></script>
+    <script src="/js/service/produto_service.js"></script>
+    <script src="/js/controller/carrinho_controller.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    
+</body>
+</html>

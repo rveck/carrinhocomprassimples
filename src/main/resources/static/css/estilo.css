@@ -1,0 +1,28 @@
+.resultado {
+  background: white;
+  padding: 10px;
+}
+
+.resultado:nth-child(even) {
+  background: #eee;
+}
+
+.resultados {
+  width: 280px;
+  max-height: 200px;
+  border: 1px solid #dedede;
+  border-radius: 3px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.btn-primary{
+	margin-top: 1rem;
+}
+
+.adicionar-produto{
+	background-color: #eee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
