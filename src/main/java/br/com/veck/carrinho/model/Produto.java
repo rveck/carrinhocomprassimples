@@ -1,5 +1,7 @@
 package br.com.veck.carrinho.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -16,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Produto {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
 	
@@ -29,6 +32,14 @@ public class Produto {
 	@Transient
 	@JsonInclude(Include.NON_NULL)
 	private Integer quantidade;
+	
+	@JsonIgnore
+	@Column(name = "data_criacao", nullable = false)
+	private Date dataCriacao;
+	
+	@JsonIgnore
+	@Column(name = "data_exclusao")
+	private Date dataExclusao;
 
 	public Long getId() {
 		return id;
@@ -62,4 +73,19 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public Date getDataExclusao() {
+		return dataExclusao;
+	}
+
+	public void setDataExclusao(Date dataExclusao) {
+		this.dataExclusao = dataExclusao;
+	}
 }

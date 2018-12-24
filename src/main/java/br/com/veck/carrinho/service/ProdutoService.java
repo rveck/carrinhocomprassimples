@@ -1,6 +1,7 @@
 package br.com.veck.carrinho.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -22,9 +23,10 @@ public class ProdutoService {
 	@Autowired
     private MessageSource messageSource;
 	
-	public void salvarProduto(Produto produto) throws CarrinhoException{
+	public Produto salvarProduto(Produto produto) throws CarrinhoException{
 		try {
-			produtoRepository.save(produto);
+			produto.setDataCriacao(new Date());
+			return produtoRepository.save(produto);
 		}catch(Exception e) {
 			e.printStackTrace();
 			throw new CarrinhoException(String.format(messageSource.getMessage("produto.erro.salvamento", null, Locale.getDefault()), produto.getNome()),e);
@@ -34,7 +36,8 @@ public class ProdutoService {
 	public void removerProduto(Long id) throws CarrinhoException{
 		try {
 			Produto produto = buscarProdutoPorId(id);
-			produtoRepository.delete(produto);
+			produto.setDataExclusao(new Date());
+			produtoRepository.save(produto);
 		}catch(CarrinhoException e) {
 			throw e;
 		}catch(Exception e) {
@@ -62,7 +65,7 @@ public class ProdutoService {
 	public List<Produto> buscarTodos() throws CarrinhoException{
 		try {
 			List<Produto> lstProduto = new ArrayList<Produto>();
-			Iterable<Produto> it = produtoRepository.findAll();
+			Iterable<Produto> it = produtoRepository.buscarTodosProdutos();
 			for (Produto produto: it) {
 				lstProduto.add(produto);
 			}

@@ -68,12 +68,12 @@ public class RestProdutoController {
 	}
 	
 	@RequestMapping(path=Constantes.Url.URL_PRODUTO + "/{id}", method = RequestMethod.PUT)
-	public @ResponseBody Resposta atualizarProduto(@RequestBody Produto produto, @PathVariable Long id) {
+	public @ResponseBody Resposta atualizarProduto(@RequestBody Produto produtoAtualizado, @PathVariable Long id) {
 		Resposta resposta = new Resposta();
 		try {
 			Produto produtoSalvo = produtoService.buscarProdutoPorId(id);
-			produto.setId(produtoSalvo.getId());
-			produtoService.salvarProduto(produto);
+			produtoAtualizado.setId(produtoSalvo.getId());
+			Produto produto = produtoService.salvarProduto(produtoAtualizado);
 			resposta.setResposta(produto);
 			logger.info(String.format("Atualizando produto %s", id));
 		}catch(CarrinhoException e) {

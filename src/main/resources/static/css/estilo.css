@@ -42,6 +42,14 @@
 	text-align: right !important;
 }
 
+.text-align-right{
+	text-align: right;
+}
+
+.text-align-center{
+	text-align: center;
+}
+
 .linha-totalizadora{
 	background-color: #eee;
     font-weight: 700;

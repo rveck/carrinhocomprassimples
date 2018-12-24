@@ -46,9 +46,9 @@
 				    		ng-repeat="item in carrinhoController.produtosFiltrados"				    		
 				    		ng-click="carrinhoController.focus = false; carrinhoController.setProduto(item)">{{item.nome}} - R$ {{item.valor}}</div>
 				  	</div>					
-		    		<button ng-click="carrinhoController.adicionarProduto()" class="btn btn-primary mb-2" th:text="#{botao.adicionar}"></button>				
-				</div>						    	
-	    	</div>
+		    		<button ng-click="carrinhoController.adicionarProduto()" class="btn btn-primary mb-2" th:text="#{botao.adicionar}"></button>		    						
+				</div>										    
+	    	</div>	    	
     	</div>
     	<div class="row">
 			<div class="col">
@@ -60,36 +60,37 @@
 		    	<table class="table table-hover">
 			        <thead>
 			            <tr>
-			                <th th:text="#{campo.id}"></th>
-			                <th th:text="#{campo.nome}"></th>
-			                <th th:text="#{campo.quantidade}"></th>
-			                <th th:text="#{campo.valor}"></th>
-			                <th th:text="#{campo.subtotal}"></th>
-			                <th th:text="#{botao.remover}"></th>
+			                <th class="text-align-center" th:text="#{campo.id}"></th>
+			                <th class="text-align-center" th:text="#{campo.nome}"></th>
+			                <th class="text-align-center" th:text="#{campo.quantidade}"></th>
+			                <th class="text-align-center" th:text="#{campo.valor}"></th>
+			                <th class="text-align-center" th:text="#{campo.subtotal}"></th>
+			                <th class="text-align-center" th:text="#{botao.remover}"></th>
 			            </tr>
 			        </thead>
 			        <tbody>
 			            <tr ng-repeat="produto in carrinhoController.carrinho">
-			                <td>{{produto.id}}</td>
-			                <td>{{produto.nome}}</td>
-			                <td>
+			                <td class="text-align-center">{{produto.id}}</td>
+			                <td class="text-align-center">{{produto.nome}}</td>
+			                <td class="text-align-center">
 				                	<input 
+				                	class="text-align-center"
 				                	type="number" 
 				                	ng-model="produto.quantidade"
 				                	ng-blur="carrinhoController.atualizarProduto(produto)">
 				            </td>
-			                <td>{{produto.valor}}</td>
-			                <td ng-init="subtotal = produto.quantidade * produto.valor">{{subtotal}}</td>
-			                <td>
+			                <td class="text-align-right">{{produto.valor}}</td>
+			                <td class="text-align-right" ng-init="subtotal = produto.quantidade * produto.valor">{{subtotal}}</td>
+			                <td class="text-align-right">
 			                	<button type="button" ng-click="carrinhoController.removerProduto(produto)" class="btn btn-secondary">Remover</button>
 			                </td>			                
 			            </tr>
 			            <tr class="linha-totalizadora" ng-show="carrinhoController.carrinho.length > 0">
-			                <td th:text="#{campo.total}"></td>
+			                <td class="text-align-center" th:text="#{campo.total}"></td>
 			                <td></td>
-			                <td>{{carrinhoController.qtdTotal}}</td>
+			                <td class="text-align-center">{{carrinhoController.qtdTotal}}</td>
 			                <td></td>
-			                <td>{{carrinhoController.valorTotal}}</td>			                
+			                <td class="text-align-right">{{carrinhoController.valorTotal}}</td>			                
 			                <td></td>			                
 			            </tr>
 			        </tbody>
@@ -103,7 +104,7 @@
 				</div>
 		    </div>
 	    </div>
-	    <div class="row" ng-show="carrinhoController.carrinho.lenght > 0">
+	    <div class="row" ng-show="carrinhoController.carrinho.length > 0">
 			<div class="col tar">
 				<button ng-click="carrinhoController.limparCarrinho()" class="btn btn-primary mb-2" th:text="#{botao.limpar}"></button> 	
 			</div>

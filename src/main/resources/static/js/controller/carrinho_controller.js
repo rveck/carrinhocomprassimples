@@ -95,7 +95,7 @@ App.controller('CarrinhoController', ['$scope', 'CarrinhoService', 'ProdutoServi
     
     function setProduto(produto){
     	self.produto = produto;    	
-    	self.busca = produto.nome;    	
+    	self.busca = produto.nome + " - R$ " + produto.valor;    	
     }
     
     function adicionarProduto(){
