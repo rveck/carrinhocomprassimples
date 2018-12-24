@@ -2,7 +2,7 @@
  
 angular.module('carrinhoApp').factory('CarrinhoService', ['$http', '$q', function($http, $q){
  
-    var REST_SERVICE_URI = "http://localhost:9090/carrinho/";
+    var REST_SERVICE_URI = serverUrl + ":" + serverPort + "/carrinho/";
     var REST_SERVICE_URI_LIMPAR_CARRINHO = REST_SERVICE_URI + "limpar";
     	
     var factory = {

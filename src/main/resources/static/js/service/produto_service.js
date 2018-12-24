@@ -1,8 +1,8 @@
 'use strict';
  
 angular.module('carrinhoApp').factory('ProdutoService', ['$http', '$q', function($http, $q){
- 
-    var REST_SERVICE_URI = "http://localhost:9090/produto/";
+	
+    var REST_SERVICE_URI = serverUrl + ":" + serverPort + "/produto/";
     	
     var factory = {
     		listarProdutos: listarProdutos

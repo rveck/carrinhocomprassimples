@@ -68,6 +68,8 @@
         		<spring.datasource.username>app</spring.datasource.username>
         		<spring.datasource.password>c@rr1nh0</spring.datasource.password>
         		<logging.file>/Users/rafaelveck/Desktop/log/log.log</logging.file>
+        		<server-url>http://localhost</server-url>
+        		<server-port>9090</server-port>
         	</properties> 			
 		</profile> 
 		<profile>
@@ -78,6 +80,8 @@
         		<spring.datasource.username>app</spring.datasource.username>
         		<spring.datasource.password>c@rr1nh0</spring.datasource.password>
         		<logging.file>/opt/carrinhosimples/log.log</logging.file>
+        		<server-url>http://35.211.193.141</server-url>
+        		<server-port>9090</server-port>
         	</properties>		
 		</profile> 
 	</profiles>
