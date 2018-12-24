@@ -5,6 +5,7 @@ O objetivo dessa aplicação é permitir a gestão de um carrinho fake de compra
 - [x] Spring Boot
 - [x] Spring MVC
 - [x] Spring Data
+- [x] Spring Security
 - [x] Spring Test
 - [x] MySQL DB
 - [x] Angular
