@@ -10,5 +10,6 @@ public class Constantes {
 	public interface Url{
 		public static final String URL_PRODUTO = "/produto";
 		public static final String URL_CARRINHO = "/carrinho";
+		public static final String URL_LIMPAR_CARRINHO = "/carrinho/limpar";
 	}
 }

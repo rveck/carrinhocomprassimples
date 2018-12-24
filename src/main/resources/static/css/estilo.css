@@ -26,3 +26,23 @@
     padding: 1rem;
     margin-bottom: 1rem;
 }
+
+.titulo-principal{
+	text-align:center;
+	margin-top:1rem;
+	margin-bottom:1rem
+}
+
+.rodape{
+	text-align:center;
+	font-size:0.8rem
+}
+
+.tar{
+	text-align: right !important;
+}
+
+.linha-totalizadora{
+	background-color: #eee;
+    font-weight: 700;
+}

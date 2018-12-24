@@ -1,49 +1,58 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Carrinho de Produtos Simples</title>
+    <title th:text="#{titulo.app}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="/css/estilo.css"/>
-		
+	<link rel="stylesheet" href="/css/estilo.css"/>		
 </head>
 <body lang="pt-br" ng-app="carrinhoApp" class="ng-cloak">
 	<div ng-controller="CarrinhoController as carrinhoController" class="container">
 		<div class="row">
-			<div class="col">
-				<h3>Carrinho de Compras Simples</h3> 	
+			<div class="col titulo-principal">
+				<h3 th:text="#{titulo.app}"></h3> 	
 			</div>
+		</div>
+		<div class="alert alert-success" role="alert" ng-show="carrinhoController.msgSucesso != ''">
+			<span ng-bind="carrinhoController.msgSucesso"></span>
+			 <span class="close" aria-label="Close" ng-click="carrinhoController.msgSucesso = ''">
+			   <span aria-hidden="true">&times;</span>
+			 </span>
+		</div>
+		<div class="alert alert-danger" role="alert" ng-show="carrinhoController.msgErro != ''">
+			<span ng-bind="carrinhoController.msgErro"></span>
+			<span class="close" aria-label="Close" ng-click="carrinhoController.msgErro = ''">
+			  <span aria-hidden="true">&times;</span>
+			</span>
 		</div>
 		<div class="row adicionar-produto" >
 			<div class="col"> 					
 				<div class="form-group">					
-					<h6>Procure pelo Produto</h6>
+					<h6 th:text="#{titulo.busca.produto}"></h6>
 					<input 
-						type="text" 
+						type="text" 												
 						class="form-control" 
 						id="produto" 
 						autocomplete="off"
-						placeholder="Digite o nome do produto..." 
+						th:placeholder="#{placeholder.busca.produto}" 
 						ng-focus="carrinhoController.focus=true" 						 
 						ng-keyup="carrinhoController.filtrar()"
 						ng-model="carrinhoController.busca">	
 					<div class="resultados" ng-show="carrinhoController.focus">
 				    	<div 
 				    		class="resultado" 
-				    		ng-repeat="item in carrinhoController.produtosFiltrados" 
-				    		ng-bind="item.nome" 
-				    		ng-click="carrinhoController.focus = false; carrinhoController.setProduto(item)"></div>
+				    		ng-repeat="item in carrinhoController.produtosFiltrados"				    		
+				    		ng-click="carrinhoController.focus = false; carrinhoController.setProduto(item)">{{item.nome}} - R$ {{item.valor}}</div>
 				  	</div>					
-		    		<button ng-click="carrinhoController.adicionarProduto()" class="btn btn-primary mb-2">Adicionar</button>				
+		    		<button ng-click="carrinhoController.adicionarProduto()" class="btn btn-primary mb-2" th:text="#{botao.adicionar}"></button>				
 				</div>						    	
 	    	</div>
     	</div>
     	<div class="row">
 			<div class="col">
-				<h6>Itens no Carrinho</h6> 	
+				<h6 th:text="#{titulo.carrinho}"></h6> 	
 			</div>
 		</div>
     	<div class="row">   
@@ -51,39 +60,57 @@
 		    	<table class="table table-hover">
 			        <thead>
 			            <tr>
-			                <th>ID.</th>
-			                <th>Name</th>
-			                <th>Quantidade</th>
-			                <th>Valor (R$)</th>
-			                <th>Remover</th>
+			                <th th:text="#{campo.id}"></th>
+			                <th th:text="#{campo.nome}"></th>
+			                <th th:text="#{campo.quantidade}"></th>
+			                <th th:text="#{campo.valor}"></th>
+			                <th th:text="#{campo.subtotal}"></th>
+			                <th th:text="#{botao.remover}"></th>
 			            </tr>
 			        </thead>
 			        <tbody>
 			            <tr ng-repeat="produto in carrinhoController.carrinho">
-			                <td><span ng-bind="produto.id"></span></td>
-			                <td><span ng-bind="produto.nome"></span></td>
-			                <td><input type="number" ng-model="produto.quantidade"></td>
-			                <td><span ng-bind="produto.valor"></span></td>
+			                <td>{{produto.id}}</td>
+			                <td>{{produto.nome}}</td>
 			                <td>
-			                	<button type="button" ng-click="carrinhoController.removerProduto(produto)" class="btn btn-default">
-			                		<i class="fa fa-times fa-lg" aria-hidden="true"></i>
-			                	</button>
+				                	<input 
+				                	type="number" 
+				                	ng-model="produto.quantidade"
+				                	ng-blur="carrinhoController.atualizarProduto(produto)">
+				            </td>
+			                <td>{{produto.valor}}</td>
+			                <td ng-init="subtotal = produto.quantidade * produto.valor">{{subtotal}}</td>
+			                <td>
+			                	<button type="button" ng-click="carrinhoController.removerProduto(produto)" class="btn btn-secondary">Remover</button>
 			                </td>			                
 			            </tr>
-			            <tr>
-			                <td>Total</td>
+			            <tr class="linha-totalizadora" ng-show="carrinhoController.carrinho.length > 0">
+			                <td th:text="#{campo.total}"></td>
 			                <td></td>
+			                <td>{{carrinhoController.qtdTotal}}</td>
 			                <td></td>
-			                <td></td>
+			                <td>{{carrinhoController.valorTotal}}</td>			                
 			                <td></td>			                
 			            </tr>
 			        </tbody>
 			    </table>
+			    
+			    <div class="alert alert-warning alert-dismissible fade show" role="alert" ng-show="carrinhoController.msgCarrinho != ''">
+				  <span ng-bind="carrinhoController.msgCarrinho"></span>
+				  <span class="close" aria-label="Close" ng-click="carrinhoController.msgCarrinho = ''">
+				    <span aria-hidden="true">&times;</span>
+				  </span>
+				</div>
 		    </div>
 	    </div>
 	    <div class="row">
-			<div class="col">
-				<p>Powered by Rafael Veck, 2018</p> 	
+			<div class="col tar">
+				<button ng-click="carrinhoController.limparCarrinho()" class="btn btn-primary mb-2" th:text="#{botao.limpar}"></button> 	
+			</div>
+		</div>	    
+	    <div class="row">
+			<div class="col rodape">
+				<p th:text="#{texto.rodape}"></p> 	
 			</div>
 		</div>
     </div>

@@ -2,7 +2,7 @@
  
 angular.module('carrinhoApp').factory('ProdutoService', ['$http', '$q', function($http, $q){
  
-    var REST_SERVICE_URI = "http://localhost:8080/produto/";
+    var REST_SERVICE_URI = "http://localhost:9090/produto/";
     	
     var factory = {
     		listarProdutos: listarProdutos
@@ -15,9 +15,7 @@ angular.module('carrinhoApp').factory('ProdutoService', ['$http', '$q', function
         $http.get(REST_SERVICE_URI)
             .then(
             function (response) {
-            	if (response.data.codigo == 0){
-            		deferred.resolve(response.data.resposta);
-            	}
+            	deferred.resolve(response.data);            	
             },
             function(errResponse){
                 console.error('Erro enquanto listava todos os produtos cadastrado');

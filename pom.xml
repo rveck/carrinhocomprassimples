@@ -49,15 +49,55 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-	</dependencies>
+        
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+	</dependencies>		
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+            	<activeByDefault>true</activeByDefault>
+        	</activation>
+        	<properties>
+        		<spring.datasource.url>jdbc:mysql://localhost:3306/db_carrinho</spring.datasource.url>
+        		<spring.datasource.username>app</spring.datasource.username>
+        		<spring.datasource.password>c@rr1nh0</spring.datasource.password>
+        	</properties> 			
+		</profile> 
+		<profile>
+			<id>prod</id>
+			<properties>
+        		<spring.datasource.url>jdbc:mysql://localhost:3306/db_carrinho</spring.datasource.url>
+        		<spring.datasource.username>app</spring.datasource.username>
+        		<spring.datasource.password>c@rr1nh0</spring.datasource.password>
+        	</properties>		
+		</profile> 
+	</profiles>
 
-	<build>
+	<build>	
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+		          <profiles>
+		            <profile>dev</profile>
+		            <profile>prod</profile>
+		          </profiles>
+        		</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-		</plugins>
+		</plugins>	
+					
 	</build>
-
 </project>

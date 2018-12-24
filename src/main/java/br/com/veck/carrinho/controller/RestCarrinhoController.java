@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import br.com.veck.carrinho.rest.Resposta;
 import br.com.veck.carrinho.service.ProdutoService;
 import br.com.veck.carrinho.util.Constantes;
 
+@Scope(value="session")
 @Controller
 public class RestCarrinhoController {
 	
@@ -85,6 +87,7 @@ public class RestCarrinhoController {
 				}
 				if (produtoJaAdicionado == null) {
 					Produto produtoSalvo = produtoService.buscarProdutoPorId(id);
+					produtoSalvo.setQuantidade(1);
 					carrinho.add(produtoSalvo);
 					resposta.setResposta(carrinho);
 				}else {
@@ -92,7 +95,7 @@ public class RestCarrinhoController {
 					resposta.setMensagem(messageSource.getMessage("carrinho.erro.produto.ja.adicionado", null, Locale.getDefault()));
 				}								 
 			}			
-			logger.info(String.format("Adicionando produto %s no carrinho", produto.getNome()));
+			logger.info(String.format("Adicionando produto %s no carrinho", produto.getId()));
 		}catch(CarrinhoException e) {
 			resposta.setCodigo(Constantes.Status.CODIGO_ERRO);
 			resposta.setMensagem(e.getMensagem());
@@ -148,6 +151,14 @@ public class RestCarrinhoController {
 			}
 		}
 		logger.info(String.format("Removendo produto %s", id));
+		return resposta;
+	}
+	
+	@RequestMapping(path=Constantes.Url.URL_LIMPAR_CARRINHO, method = RequestMethod.GET)
+	public @ResponseBody Resposta limparCarrinho() {
+		Resposta resposta = new Resposta();
+		carrinho.clear();
+		logger.info("Carrinho limpado!");
 		return resposta;
 	}
 
