@@ -3,15 +3,18 @@ O objetivo dessa aplicação é permitir a gestão de um carrinho fake de compra
 
 # Especificações técnicas:
 - [x] Spring Boot
+- [x] Spring MVC
 - [x] Spring Data
 - [x] Spring Test
 - [x] MySQL DB
 - [x] Angular
 - [x] Thymeleaf
 - [x] JQuery
+- [x] CSS
 - [x] Bootstrap
 - [x] HTML 5
 - [x] Maven
+- [x] GIT
 
 # Gestão do carrinho através da interface web:
 - URL: http://35.211.193.141:9090/
