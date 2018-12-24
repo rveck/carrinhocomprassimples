@@ -96,7 +96,7 @@ O objetivo dessa aplicação é permitir a gestão de um carrinho fake de compra
 ```
 mvn clean install
 ```
-6. Executar o seguinte comando para incializar a aplicação:
+6. Executar o seguinte comando para inicializar a aplicação:
 ```
 java -jar -Xmx512m -Dfile.encoding=UTF-8 -Duser.timezone=America/Sao_Paulo -Duser.language=pt -Duser.region=BR target/carrinho-0.0.1-SNAPSHOT.jar &
 ```
