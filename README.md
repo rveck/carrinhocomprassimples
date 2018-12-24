@@ -89,10 +89,13 @@ O objetivo dessa aplicação é permitir a gestão de um carrinho fake de compra
 ```
 # Roteiro básico de instalação
 1. Criar o schema "db_carrinho" na base de dados;
-2. Definir um usuário com acesso de escrita e consulta à base;
-3. Baixar código fonte;
-4. Executar o script sql que se encontra no diretó sql;
-5. Editar o arquivo pom.xml atualizando as configurações da base de dados e log do profile dev;
+2. Definir um usuário com acesso de escrita e consulta ao novo schema;
+3. Baixar código fonte:
+```
+git clone git@github.com:rveck/carrinhocomprassimples.git
+```
+4. Executar o script SQL que se encontra no diretório "sql";
+5. Editar o arquivo "pom.xml" atualizando as configurações da base de dados e log do profile "dev";
 6. Executar o seguinte comando onde se encontra o arquivo pom.xml:
 ```
 mvn clean install
