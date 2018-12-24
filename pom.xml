@@ -63,17 +63,21 @@
             	<activeByDefault>true</activeByDefault>
         	</activation>
         	<properties>
+        		<spring.profiles.active>dev</spring.profiles.active>
         		<spring.datasource.url>jdbc:mysql://localhost:3306/db_carrinho</spring.datasource.url>
         		<spring.datasource.username>app</spring.datasource.username>
         		<spring.datasource.password>c@rr1nh0</spring.datasource.password>
+        		<logging.file>/Users/rafaelveck/Desktop/log/log.log</logging.file>
         	</properties> 			
 		</profile> 
 		<profile>
 			<id>prod</id>
 			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
         		<spring.datasource.url>jdbc:mysql://localhost:3306/db_carrinho</spring.datasource.url>
         		<spring.datasource.username>app</spring.datasource.username>
         		<spring.datasource.password>c@rr1nh0</spring.datasource.password>
+        		<logging.file>/opt/carrinhosimples/log.log</logging.file>
         	</properties>		
 		</profile> 
 	</profiles>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import br.com.veck.carrinho.exception.CarrinhoException;
 import br.com.veck.carrinho.model.Produto;
 import br.com.veck.carrinho.rest.Resposta;
+import br.com.veck.carrinho.rest.RespostaCarrinho;
 import br.com.veck.carrinho.service.ProdutoService;
 import br.com.veck.carrinho.util.Constantes;
 
@@ -37,13 +38,21 @@ public class RestCarrinhoController {
 	private List<Produto> carrinho = new ArrayList<Produto>();
 	
 	@RequestMapping(path=Constantes.Url.URL_CARRINHO, method = RequestMethod.GET)
-	public @ResponseBody Resposta consultarTodos() {
-		Resposta resposta = new Resposta();
+	public @ResponseBody RespostaCarrinho consultarTodos() {
+		RespostaCarrinho resposta = new RespostaCarrinho();
 		if (carrinho.isEmpty()) {
 			resposta.setCodigo(Constantes.Status.CODIGO_ERRO);
 			resposta.setMensagem(messageSource.getMessage("carrinho.erro.vazio", null, Locale.getDefault()));
 		}else {
-			resposta.setResposta(carrinho);	
+			resposta.setResposta(carrinho);
+			Double valorTotal = new Double(0);
+			Integer qtdTotal = new Integer(0);
+			for (Produto produto : carrinho) {
+				valorTotal = valorTotal + (produto.getValor() * produto.getQuantidade());
+				qtdTotal = qtdTotal + produto.getQuantidade();
+			}
+			resposta.setValorTotal(valorTotal);
+			resposta.setQtdTotal(qtdTotal);
 		}		
 		logger.info("Consultando todos os produtos no carrinho");
 		return resposta;

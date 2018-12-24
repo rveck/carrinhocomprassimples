@@ -46,13 +46,9 @@ App.controller('CarrinhoController', ['$scope', 'CarrinhoService', 'ProdutoServi
             .then(
             function(d) {
             	if (d.codigo == 0){
-            		self.carrinho = d.resposta;	
-            		
-            		angular.forEach(d.resposta, function(item) {
-                		self.valorTotal = self.valorTotal + (item.valor * item.quantidade);
-                		self.qtdTotal = self.qtdTotal + item.quantidade;
-                	});
-            		
+            		self.carrinho = d.resposta;
+            		self.valorTotal = d.valorTotal;
+            		self.qtdTotal = d.qtdTotal;           		
             	}else{
             		self.msgCarrinho = d.mensagem;
             	}
@@ -68,8 +64,12 @@ App.controller('CarrinhoController', ['$scope', 'CarrinhoService', 'ProdutoServi
     	 ProdutoService.listarProdutos()
          .then(
 	         function(d) {
-	             self.produtosCadastrados = d.resposta;
-	             self.produtosFiltrados = d.resposta;
+	        	 if (d.codigo == 0){
+	             	self.produtosCadastrados = d.resposta;
+	             	self.produtosFiltrados = d.resposta;
+	         	 }else{
+	         		 self.msgErro = d.mensagem;
+	         	 }
 	         },
 	         function(errResponse){
 	        	 self.msgErro = 'Erro ao listar os produtos no carrinho';

@@ -103,7 +103,7 @@
 				</div>
 		    </div>
 	    </div>
-	    <div class="row">
+	    <div class="row" ng-show="carrinhoController.carrinho.lenght > 0">
 			<div class="col tar">
 				<button ng-click="carrinhoController.limparCarrinho()" class="btn btn-primary mb-2" th:text="#{botao.limpar}"></button> 	
 			</div>
