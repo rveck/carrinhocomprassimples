@@ -18,6 +18,8 @@ O objetivo dessa aplicação é permitir a gestão de um carrinho fake de compra
 - Usuário: user
 - Senha: secret123
 
+<img width="1144" alt="screen shot 2018-12-24 at 20 12 40" src="https://user-images.githubusercontent.com/10779649/50407168-f0646900-07b8-11e9-9a13-b50de31fdf67.png">
+
 # Gestão do carrinho através da API Rest:
 **1. Listar itens no carrinho:**
 - URL: http://35.211.193.141:9090/carrinho
