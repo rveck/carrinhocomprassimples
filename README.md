@@ -86,3 +86,17 @@ O objetivo dessa aplicação é permitir a gestão de um carrinho fake de compra
 	"valor": 900
 }
 ```
+# Roteiro básico de instalação
+1. Criar o schema "db_carrinho" na base de dados;
+2. Definir um usuário com acesso de escrita e consulta à base;
+3. Baixar código fonte;
+4. Executar o script sql que se encontra no diretó sql;
+5. Editar o arquivo pom.xml atualizando as configurações da base de dados e log do profile dev;
+6. Executar o seguinte comando onde se encontra o arquivo pom.xml:
+```
+mvn clean install
+```
+6. Executar o seguinte comando para incializar a aplicação:
+```
+java -jar -Xmx512m -Dfile.encoding=UTF-8 -Duser.timezone=America/Sao_Paulo -Duser.language=pt -Duser.region=BR target/carrinho-0.0.1-SNAPSHOT.jar &
+```
