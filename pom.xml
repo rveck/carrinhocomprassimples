@@ -65,8 +65,8 @@
         	<properties>
         		<spring.profiles.active>dev</spring.profiles.active>
         		<spring.datasource.url>jdbc:mysql://localhost:3306/db_carrinho</spring.datasource.url>
-        		<spring.datasource.username>app</spring.datasource.username>
-        		<spring.datasource.password>c@rr1nh0</spring.datasource.password>
+        		<spring.datasource.username>USER</spring.datasource.username>
+        		<spring.datasource.password>PASSWORD</spring.datasource.password>
         		<logging.file>/Users/rafaelveck/Desktop/log/log.log</logging.file>
         		<server-url>http://localhost</server-url>
         		<server-port>9090</server-port>
@@ -77,10 +77,10 @@
 			<properties>
 				<spring.profiles.active>prod</spring.profiles.active>
         		<spring.datasource.url>jdbc:mysql://localhost:3306/db_carrinho</spring.datasource.url>
-        		<spring.datasource.username>app</spring.datasource.username>
-        		<spring.datasource.password>c@rr1nh0</spring.datasource.password>
+        		<spring.datasource.username>USER</spring.datasource.username>
+        		<spring.datasource.password>PASSWORD</spring.datasource.password>
         		<logging.file>/opt/carrinhosimples/log.log</logging.file>
-        		<server-url>http://35.211.193.141</server-url>
+        		<server-url>http://HOST</server-url>
         		<server-port>9090</server-port>
         	</properties>		
 		</profile> 
