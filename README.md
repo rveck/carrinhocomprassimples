@@ -1,7 +1,7 @@
 # Carrinho de Compras Simples
 O objetivo dessa aplicação é permitir a gestão de um carrinho fake de compras salvo na sessão a partir de produtos cadastrados na base de dados.
 
-# Especificações técnicas:
+# Frameworks utilizados:
 - [x] Spring Boot
 - [x] Spring MVC
 - [x] Spring Data
